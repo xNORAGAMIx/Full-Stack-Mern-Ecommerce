@@ -6,7 +6,7 @@ const authenticate = asyncHandler(async (req, res, next) => {
   let token;
 
   //read the jwt from the 'jwt' cookie
-  token = req.cookie.jwt;
+  token = req.cookies.jwt;
 
   if (token) {
     try {
