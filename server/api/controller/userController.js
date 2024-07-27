@@ -118,10 +118,56 @@ const getCurrentUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
+const updateCurrentUserProfile = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user._id);
+
+  //user exists
+  if (user) {
+    //if username passed as parameterc change it
+    user.username = req.body.username || user.username;
+
+    //email passed in request body
+    if (req.body.email) {
+      const email = req.body.email;
+
+      //check user email passed in body already exists or not
+      const userEmail = await User.findOne({ email });
+
+      //new email passed in body already exists
+      if (userEmail) {
+        throw new Error("Email already exists!");
+      }
+
+      //new email passed does not exist, hence change it
+      user.email = email;
+    }
+
+    if (req.body.password) {
+      const hashPassword = await bcrypt.hash(req.body.password, 10);
+      console.log(`Hashed Password: ${hashPassword}`);
+
+      user.password = hashPassword;
+    }
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found!");
+  }
+});
+
 export {
   createUser,
   loginUser,
   logoutUser,
   getAllUsers,
   getCurrentUserProfile,
+  updateCurrentUserProfile,
 };

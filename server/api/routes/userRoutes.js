@@ -5,6 +5,7 @@ import {
   logoutUser,
   getAllUsers,
   getCurrentUserProfile,
+  updateCurrentUserProfile
 } from "../controller/userController.js";
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
@@ -15,7 +16,10 @@ router
   .post(createUser)
   .get(authenticate, authorizeAdmin, getAllUsers);
 
-router.route("/profile").get(authenticate, getCurrentUserProfile);
+router
+    .route("/profile")
+    .get(authenticate, getCurrentUserProfile)
+    .put(authenticate, updateCurrentUserProfile);
 
 //Login route
 router.route("/auth").post(loginUser);
