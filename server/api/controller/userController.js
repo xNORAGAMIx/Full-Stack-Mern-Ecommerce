@@ -95,4 +95,11 @@ const logoutUser = asyncHandler(async (req, res) => {
   });
 });
 
-export { createUser, loginUser, logoutUser };
+const getAllUsers = asyncHandler(async (req, res) => {
+  const allUsers = await User.find({});
+  res.status(200).json({
+    users: allUsers,
+  });
+});
+
+export { createUser, loginUser, logoutUser, getAllUsers };
