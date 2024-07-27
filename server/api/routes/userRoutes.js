@@ -7,6 +7,7 @@ import {
   getCurrentUserProfile,
   updateCurrentUserProfile,
   deleteUserById,
+  getUserById
 } from "../controller/userController.js";
 import { authenticate, authorizeAdmin } from "../middlewares/authMiddleware.js";
 
@@ -28,5 +29,9 @@ router.route("/auth").post(loginUser);
 router.route("/logout").post(logoutUser);
 
 //admin route
-router.route("/:id").delete(authenticate, authorizeAdmin, deleteUserById);
+router
+  .route("/:id")
+  .delete(authenticate, authorizeAdmin, deleteUserById)
+  .get(authenticate, authorizeAdmin, getUserById);
+
 export default router;
