@@ -192,6 +192,52 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
+const updateUserById = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    //username if passed in request change it
+    user.username = req.body.username || user.username;
+
+    //email
+    if (req.body.email) {
+      const email = req.body.email;
+
+      const userEmail = await User.findOne({ email });
+
+      if (userEmail) {
+        throw new Error("Email already exists!");
+      }
+
+      user.email = email;
+    }
+
+    //password
+    if (req.body.password) {
+      const hashPassword = await bcrypt.hash(req, body.password, 10);
+      console.log(`Hashed Password: ${hashPassword}`);
+
+      user.password = hashPassword;
+    }
+
+    //admin
+    console.log(req.body.isAdmin);
+    user.isAdmin = Boolean(req.body.isAdmin);
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      username: updatedUser.username,
+      email: updatedUser.email,
+      isAdmin: updatedUser.isAdmin,
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found!");
+  }
+});
+
 export {
   createUser,
   loginUser,
@@ -201,4 +247,5 @@ export {
   updateCurrentUserProfile,
   deleteUserById,
   getUserById,
+  updateUserById,
 };
