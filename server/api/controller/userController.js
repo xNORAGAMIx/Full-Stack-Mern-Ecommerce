@@ -89,4 +89,10 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { createUser, loginUser };
+const logoutUser = asyncHandler(async (req, res) => {
+  res.clearCookie("jwt").status(200).json({
+    message: "Logged out successfully!",
+  });
+});
+
+export { createUser, loginUser, logoutUser };
