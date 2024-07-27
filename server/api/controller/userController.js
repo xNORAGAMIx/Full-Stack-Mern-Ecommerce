@@ -22,6 +22,7 @@ const createUser = asyncHandler(async (req, res) => {
     throw new Error("Email already exists!");
   }
 
+  //hashing password
   const hashPassword = await bcrypt.hash(password, 10);
   console.log(`Hashed Password: ${hashPassword}`);
 
@@ -35,6 +36,7 @@ const createUser = asyncHandler(async (req, res) => {
   //saving document to collection
   try {
     await newUser.save();
+    //creating token and setting cookie
     createToken(res, newUser._id);
 
     res.status(201).json({
@@ -49,4 +51,42 @@ const createUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { createUser };
+const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  //validating form for all fields
+  if (!email || !password) {
+    throw new Error("Please enter all fields");
+  }
+
+  //checking for user existence
+  const user = await User.findOne({ email });
+
+  //email not in database
+  if (!user) {
+    throw new Error("Email does not exist!");
+  }
+
+  //user exists
+  if (user) {
+    const hashPassword = await bcrypt.compare(password, user.password);
+
+    //valid password
+    if (hashPassword) {
+      createToken(res, user._id);
+
+      res.status(201).json({
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        isAdmin: user.isAdmin,
+      });
+
+      return;
+    } else {
+      throw new Error("Wrong credentials!");
+    }
+  }
+});
+
+export { createUser, loginUser };
