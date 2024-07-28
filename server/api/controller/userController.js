@@ -212,14 +212,6 @@ const updateUserById = asyncHandler(async (req, res) => {
       user.email = email;
     }
 
-    //password
-    if (req.body.password) {
-      const hashPassword = await bcrypt.hash(req, body.password, 10);
-      console.log(`Hashed Password: ${hashPassword}`);
-
-      user.password = hashPassword;
-    }
-
     //admin
     console.log(req.body.isAdmin);
     user.isAdmin = Boolean(req.body.isAdmin);
