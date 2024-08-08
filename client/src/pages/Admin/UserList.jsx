@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const UserList = () => {
   const { data: users , refetch, isLoading, error } = useGetUsersQuery();
-  console.log(users);
+  console.log(users?.users);
 
   const [deleteUser] = useDeleteUserMutation();
 
@@ -79,7 +79,7 @@ const UserList = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
+              {users?.users.map((user) => (
                 <tr key={user._id}>
                   <td className="px-4 py-2">{user._id}</td>
                   <td className="px-4 py-2">
