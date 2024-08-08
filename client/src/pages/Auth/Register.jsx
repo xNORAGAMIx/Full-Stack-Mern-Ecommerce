@@ -47,100 +47,109 @@ const Register = () => {
   };
 
   return (
-    <>
-      <section className="pl-[10rem] flex flex-wrap">
-        <div className="mr-[4rem] mt-[5rem]">
-          <h1 className="text-2xl font-semibold mb-4">Register</h1>
+    <div className="mt-48">
+      <section className="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
+        <div className="w-full">
+          <div className="text-center">
+            <h1 className="text-3xl font-semibold text-gray-900">Register</h1>
+          </div>
 
-          <form onSubmit={submitHandler} className="container w-[40rem]">
-            <div className="my-[2rem]">
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-white"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                className="mt-1 p-2 border rounded w-full"
-                placeholder="Enter name"
-                value={username}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
+          <div className="mt-5">
+            <form onSubmit={submitHandler}>
+              <div className="relative mt-6">
+                <input
+                  type="text"
+                  id="name"
+                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  placeholder="Enter name"
+                  value={username}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <label
+                  htmlFor="name"
+                  className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                >
+                  Name
+                </label>
+              </div>
 
-            <div className="my-[2rem]">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-white"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="mt-1 p-2 border rounded w-full"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+              <div className="relative mt-6">
+                <input
+                  type="email"
+                  id="email"
+                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  placeholder="Enter email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <label
+                  htmlFor="email"
+                  className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                >
+                  Email Address
+                </label>
+              </div>
 
-            <div className="my-[2rem]">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-white"
-              >
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="mt-1 p-2 border rounded w-full"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+              <div className="relative mt-6">
+                <input
+                  type="password"
+                  id="password"
+                  className="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <label
+                  htmlFor="password"
+                  className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                >
+                  Password
+                </label>
+              </div>
 
-            <div className="my-[2rem]">
-              <label
-                htmlFor="confirmPassword"
-                className="block text-sm font-medium text-white"
-              >
-                Confirm Password
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                className="mt-1 p-2 border rounded w-full"
-                placeholder="Confirm password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
-            </div>
+              <div className="relative mt-6">
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  className="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  placeholder="Confirm password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <label
+                  htmlFor="confirmPassword"
+                  className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                >
+                  Confirm Password
+                </label>
+              </div>
 
-            <button
-              disabled={isLoading}
-              type="submit"
-              className="bg-pink-500 text-white px-4 py-2 rounded cursor-pointer my-[1rem]"
-            >{isLoading ? "Registering" : "Register"}</button>
+              <div className="my-6">
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none"
+                >
+                  {isLoading ? "Registering" : "Register"}
+                </button>
+              </div>
 
-            {isLoading && <Loader />}
-          </form>
+              <div className="mx-40">{isLoading && <Loader />}</div>
 
-          <div className="mt-4">
-            <p className="text-black">
-              Already have an account?{" "}
-              <NavLink className="hover:underline" to={redirect ? `/login?redirect=${redirect}` : "/login"}>
-                Login
-              </NavLink>
-            </p>
+              <p className="text-center text-sm text-gray-500">
+                Already have an account?{" "}
+                <NavLink
+                  className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+                  to={redirect ? `/login?redirect=${redirect}` : "/login"}
+                >
+                  Login
+                </NavLink>
+              </p>
+            </form>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

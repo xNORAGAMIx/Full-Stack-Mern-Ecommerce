@@ -39,57 +39,70 @@ const Login = () => {
   }, [navigate, redirect, userInfo]);
 
   return (
-    <div>
-      <section className="flex flex-wrap pl-[10rem]">
-        <div className="mr-[4rem] mt-[5rem]">
-          <h1 className="text-2xl font-semibold mb-4">Sign In</h1>
-          <form onSubmit={handleSubmit} className="container w-[40rem]">
-            <div className="my-[2rem]">
-              <label htmlFor="email" className="block text-sm font-medium">
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="mt-1 p-2 rounded border w-full"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="my-[2rem]">
-              <label htmlFor="password" className="block text-sm font-medium">
-                Password
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="mt-1 p-2 rounded border w-full"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-
-            <button
-              disabled={isLoading}
-              type="submit"
-              className="bg-pink-400 text-white p-3 rounded cursor-pointer"
-            >
-              {isLoading ? "Singing In..." : "Sign In"}
-            </button>
-
-            {isLoading && <Loader />}
-          </form>
-
-          <div className="mt-4">
-            <p className="">
-              New User ?{" "}
-              <NavLink
-                to={redirect ? `/register?redirect=${redirect}` : "/register"}
-                className="hover:underline"
-              >
-                Register
-              </NavLink>
+    <div className="mt-48">
+      <section className="relative mx-auto w-full max-w-md bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-xl sm:px-10">
+        <div className="w-full">
+          <div className="text-center">
+            <h1 className="text-3xl font-semibold text-gray-900">Sign In</h1>
+            <p className="mt-2 text-gray-500">
+              Sign in below to access your account
             </p>
+          </div>
+
+          <div className="mt-5">
+            <form onSubmit={handleSubmit}>
+              <div className="relative mt-6">
+                <input
+                  type="email"
+                  id="email"
+                  className="peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <label
+                  htmlFor="email"
+                  className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                >
+                  Email Address
+                </label>
+              </div>
+              <div className="relative mt-6">
+                <input
+                  type="password"
+                  id="password"
+                  className="peer peer mt-1 w-full border-b-2 border-gray-300 px-0 py-1 placeholder:text-transparent focus:border-gray-500 focus:outline-none"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <label
+                  htmlFor="password"
+                  className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-800 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-800"
+                >
+                  Password
+                </label>
+              </div>
+
+              <div className="my-6">
+                <button
+                  disabled={isLoading}
+                  type="submit"
+                  className="w-full rounded-md bg-black px-3 py-4 text-white focus:bg-gray-600 focus:outline-none"
+                >
+                  {isLoading ? "Singing In..." : "Sign In"}
+                </button>
+              </div>
+
+              <div className="mx-40">{isLoading && <Loader />}</div>
+              <p className="text-center text-sm text-gray-500">
+                New User ?{" "}
+                <NavLink
+                  to={redirect ? `/register?redirect=${redirect}` : "/register"}
+                  className="font-semibold text-gray-600 hover:underline focus:text-gray-800 focus:outline-none"
+                >
+                  Register
+                </NavLink>
+              </p>
+            </form>
           </div>
         </div>
       </section>
