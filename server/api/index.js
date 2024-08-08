@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import { connectDB } from "../config/dbConnection.js";
 
 import userRoutes from "./routes/userRoutes.js";
+import categoryRoutes from "./routes/categoryRoutes.js";
 
 //creating instance
 dotenv.config();
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
+app.use("/api/category", categoryRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running at ${port}`);
