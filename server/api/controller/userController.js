@@ -7,7 +7,7 @@ const createUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
   console.log(`${username}, ${email}, ${password}`);
 
-  //valiadting form for all fields
+  //validating form for all fields
   if (!username || !email || !password) {
     throw new Error("Please fill all the fields!");
   }
