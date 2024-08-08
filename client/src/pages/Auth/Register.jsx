@@ -131,9 +131,9 @@ const Register = () => {
           </form>
 
           <div className="mt-4">
-            <p className="text-white">
+            <p className="text-black">
               Already have an account?{" "}
-              <NavLink to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+              <NavLink className="hover:underline" to={redirect ? `/login?redirect=${redirect}` : "/login"}>
                 Login
               </NavLink>
             </p>
