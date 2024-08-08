@@ -21,7 +21,7 @@ const Register = () => {
 
   const { search } = useLocation();
   const sp = new URLSearchParams(search);
-  const redirect = sp.get("redirect") || "/";
+  const redirect = sp.get("redirect") || "/login";
 
   useEffect(() => {
     if (userInfo) {
@@ -36,7 +36,7 @@ const Register = () => {
       toast.error("Passwords do not match!");
     } else {
       try {
-        const res = await register({ username, email, password });
+        const res = await register({ username, email, password }).unwrap();
         dispatch(setCredentials({ ...res }));
         navigate(redirect);
       } catch (err) {
