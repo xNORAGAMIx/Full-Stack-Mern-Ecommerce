@@ -2,6 +2,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 //importing utils
 import { connectDB } from "../config/dbConnection.js";
@@ -18,6 +19,7 @@ const app = express();
 //starting server
 const port = process.env.PORT || 5001;
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
