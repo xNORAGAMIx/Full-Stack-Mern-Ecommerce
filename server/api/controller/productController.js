@@ -74,4 +74,19 @@ const removeProduct = asyncHandler(async (req, res) => {
   }
 });
 
-export { addProduct, updateProductDetails, removeProduct };
+const fetchProductById = asyncHandler(async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      return res.json(product);
+    } else {
+      res.status(404);
+      throw new Error("Product not found");
+    }
+  } catch (error) {
+    console.error(error);
+    return res.json({ error: "Product not found" });
+  }
+});
+
+export { addProduct, updateProductDetails, removeProduct, fetchProductById };
