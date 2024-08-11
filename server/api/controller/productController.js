@@ -103,4 +103,10 @@ const fetchAllProducts = asyncHandler(async (req, res) => {
   }
 });
 
-export { addProduct, updateProductDetails, removeProduct, fetchProductById, fetchAllProducts };
+export {
+  addProduct,
+  updateProductDetails,
+  removeProduct,
+  fetchProductById,
+  fetchAllProducts,
+};
