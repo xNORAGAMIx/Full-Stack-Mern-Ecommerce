@@ -10,7 +10,7 @@ import {
 import { toast } from "react-toastify";
 
 const UserList = () => {
-  const { data: users , refetch, isLoading, error } = useGetUsersQuery();
+  const { data: users, refetch, isLoading, error } = useGetUsersQuery();
   console.log(users?.users);
 
   const [deleteUser] = useDeleteUserMutation();
@@ -58,7 +58,11 @@ const UserList = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Users</h1>
+      <div className="p-16 text-center">
+        <h1 className="text-3xl font-bold uppercase underline cursor-default">
+          Users
+        </h1>
+      </div>
       {isLoading ? (
         <Loader />
       ) : error ? (
@@ -66,23 +70,26 @@ const UserList = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <div className="flex flex-col md:flex-row">
+        <div className="px-3 py-4 flex justify-center">
           {/* <AdminMenu /> */}
-          <table className="w-full md:w-4/5 mx-auto">
+          <table className="w-full mx-60 text-md bg-white shadow-lg rounded mb-4">
             <thead>
-              <tr>
-                <th className="px-4 py-2 text-left">ID</th>
-                <th className="px-4 py-2 text-left">NAME</th>
-                <th className="px-4 py-2 text-left">EMAIL</th>
-                <th className="px-4 py-2 text-left">ADMIN</th>
-                <th className="px-4 py-2">DELETE</th>
+              <tr className="border-b">
+                <th className="px-5 p-3 text-left">ID</th>
+                <th className="px-5 p-3 text-left">NAME</th>
+                <th className="px-5 p-3 text-left">EMAIL</th>
+                <th className="px-5 p-3 text-left">ADMIN</th>
+                <th className="px-5 p-3 text-left">DELETE</th>
               </tr>
             </thead>
             <tbody>
               {users?.users.map((user) => (
-                <tr key={user._id}>
-                  <td className="px-4 py-2">{user._id}</td>
-                  <td className="px-4 py-2">
+                <tr
+                  className="border-b hover:bg-slate-100 bg-slate-300"
+                  key={user._id}
+                >
+                  <td className="p-3 px-5">{user._id}</td>
+                  <td className="p-3 px-5">
                     {editableUserId === user._id ? (
                       <div className="flex items-center">
                         <input
@@ -111,7 +118,7 @@ const UserList = () => {
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="p-6 px-5">
                     {editableUserId === user._id ? (
                       <div className="flex items-center">
                         <input
@@ -140,14 +147,14 @@ const UserList = () => {
                       </div>
                     )}
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="p-3 px-5">
                     {user.isAdmin ? (
                       <FaCheck style={{ color: "green" }} />
                     ) : (
                       <FaTimes style={{ color: "red" }} />
                     )}
                   </td>
-                  <td className="px-4 py-2">
+                  <td className="p-3 px-5">
                     {!user.isAdmin && (
                       <div className="flex">
                         <button
